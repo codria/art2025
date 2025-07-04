@@ -10,10 +10,10 @@ function initEntryOrders() {
   if (entryOrders.top6.length > 0 && entryOrders.all.length > 0 && entryOrders.award.length > 0) return;
 
   entryOrders.top6 = Array.from(document.querySelectorAll('.entry.top6')).map(el => el.getAttribute('data-entry-number'));
-  entryOrders.all = Array.from(document.querySelectorAll('.entry:not(.top6):not(.taisho):not(.kinsho):not(.ginsho)')).map(el => el.getAttribute('data-entry-number'));
+  entryOrders.all = Array.from(document.querySelectorAll('.entry:not(.top6):not(.taisho):not(.kinsho):not(.ginsho):not(.nyuusho)')).map(el => el.getAttribute('data-entry-number'));
 
   // award は taisho, kinsho, ginsho のエントリーをまとめて
-  entryOrders.award = Array.from(document.querySelectorAll('.entry.taisho, .entry.kinsho, .entry.ginsho')).map(el => el.getAttribute('data-entry-number'));
+  entryOrders.award = Array.from(document.querySelectorAll('.entry.taisho, .entry.kinsho, .entry.ginsho, .entry.nyuusho')).map(el => el.getAttribute('data-entry-number'));
 }
 
 function openDetail(el) {
@@ -22,7 +22,7 @@ function openDetail(el) {
   const entryId = el.getAttribute('data-entry-number');
   if (el.classList.contains('top6')) {
     currentGroup = 'top6';
-  } else if (el.classList.contains('taisho') || el.classList.contains('kinsho') || el.classList.contains('ginsho')) {
+  } else if (el.classList.contains('taisho') || el.classList.contains('kinsho') || el.classList.contains('ginsho') || el.classList.contains('nyuusho')) {
     currentGroup = 'award';
   } else {
     currentGroup = 'all';

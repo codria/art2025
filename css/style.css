@@ -81,12 +81,12 @@ body {
 	text-decoration: none;
 	color: #000;
 	position: relative;
-	width: 228px;
+	width: 228px; /* 230 + 15 + 230 + 15 + 230 = 720, container 765, margin 45/2 */
 	height: auto;
 	background: linear-gradient(to right bottom, #fff 0%, #bbb 100%);
 	box-sizing: border-box;
 	overflow: hidden;
-	border: 1px solid #bbbbbb;
+	border: 1px solid #bbbbbb; /* Actually width: 228 + 1*2 = 230px */
 	border-radius: 3px;
 }
 .entry:hover {
@@ -115,7 +115,7 @@ body {
 }
 .entry_thumbnail {
 	height: 180px;
-	width: 226px;
+	width: 100%;
 	background-color: #000;
 	display: flex;
 	align-items: center;
@@ -135,23 +135,12 @@ body {
 }
 
 /* アワード関連 */
-.top6 {
-	background: linear-gradient(to right, #cfa77a 20%, #f2d1a9 70%, #cfa77a 100%);
-	color: #482813;
-	border: 1px solid #b3875a;
-	box-shadow: 0 0 3px rgba(207, 167, 122, 0.4);
-}
-.top6::before {
-	background: #482813;
-}
 .entry.taisho .entry_thumbnail,
-.entry.kinsho .entry_thumbnail,
-.entry.ginsho .entry_thumbnail {
+.entry.kinsho .entry_thumbnail {
 	height: 250px;
-	width: 100%;
 }
 .entry.taisho {
-	width: 600px;
+	width: 718px;
 	background: linear-gradient(to right, #4b0082 20%, #9932cc 70%, #4b0082 100%);
 	color: #f6e4ff;
 	border: 2px solid #5e2d79;
@@ -163,7 +152,7 @@ body {
 	color: #4b0082;
 }
 .entry.kinsho {
-	width: 293px;
+	width: 718px;
 	background: linear-gradient(to right, #a67c00 20%, #ffd700 70%, #a67c00 100%);
 	color: #411e00;
 	border: 1px solid #503a03;
@@ -175,7 +164,7 @@ body {
 	color: #fff3ac;
 }
 .entry.ginsho {
-	width: 292px;
+	width: 352px;
 	background: linear-gradient(to right, #a9a9a9 20%, #eeeeee 70%, #a9a9a9 100%);
 	color: #333333;
 	border: 1px solid #888888;
@@ -183,12 +172,33 @@ body {
 }
 .entry.ginsho::before {
   	content: "銀賞";
-	background: rgba(50, 50, 50, 0.75);
+	background: rgba(0, 0, 0, 0.75);
 	color: #eee;
+}
+.entry.nyuusho {
+	width: 352px;
+	background: linear-gradient(to right, #cfa77a 20%, #f2d1a9 70%, #cfa77a 100%);
+	color: #482813;
+	border: 1px solid #b3875a;
+	box-shadow: 0 0 3px rgba(207, 167, 122, 0.4);
+}
+.entry.nyuusho::before {
+  	content: "入賞";
+	background: #482813;
+}
+.top6 {
+	background: linear-gradient(to right, #cfa77a 20%, #f2d1a9 70%, #cfa77a 100%);
+	color: #482813;
+	border: 1px solid #b3875a;
+	box-shadow: 0 0 3px rgba(207, 167, 122, 0.4);
+}
+.top6::before {
+	background: #482813;
 }
 .entry.taisho .entry_title,
 .entry.kinsho .entry_title,
-.entry.ginsho .entry_title {
+.entry.ginsho .entry_title,
+.entry.nyuusho .entry_title {
 	padding: 7px 0px 7px 50px;
 }
 .entry_award_progressing {
@@ -205,28 +215,14 @@ body {
 	position: absolute;
 	top: 13px;
 	right: 197px;
-
 	padding: 20px 20px;
 	font-size: 20px;
 	font-weight: 700;
 	width: 36px;
 	height: 36px;
 	transform: rotate(18deg);
-
-	color: #fff;
-	background: radial-gradient(circle at center,
-		#f3c96b 0%,      /* 明るい中心 */
-		#d9913f 60%,     /* 中間の金色 */
-		#b8770a 100%     /* 周囲の濃い色 */
-	);
-
 	white-space: nowrap;
-
-	text-shadow:
-		-1px -1px 0 #a67c00,
-		 1px -1px 0 #a67c00,
-		-1px  1px 0 #a67c00,
-		 1px  1px 0 #a67c00;
+	color: #fff;
 	clip-path: polygon(
 		50% 0%, 60% 10%, 85% 15%, 90% 35%, 100% 50%, 90% 65%,
 		85% 85%, 65% 90%, 50% 100%, 35% 90%, 15% 85%, 10% 65%,
@@ -235,11 +231,71 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+	/* filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); */
 }
-
-
-
+.sticker.top6 {
+	background: radial-gradient(circle at center, #f3c96b 0%, #d9913f 60%, #b8770a 100%);
+	text-shadow:
+		-1px -1px 0 #a67c00,
+		 1px -1px 0 #a67c00,
+		-1px  1px 0 #a67c00,
+		 1px  1px 0 #a67c00;
+}
+.sticker.taisho {
+	color: #fff;
+	background: radial-gradient(circle at center,
+		#d8b0ff 5%,
+		#b77ed3 20%,
+		#8e44ad 45%,
+		#6a0dad 65%
+	);
+	text-shadow:
+		-1px -1px 0 #4b0082,
+		 1px -1px 0 #4b0082,
+		-1px  1px 0 #4b0082,
+		 1px  1px 0 #4b0082;
+}
+.sticker.kinsho {
+	color: #fff;
+	background: radial-gradient(circle at center,
+		#ffe680 5%,
+		#ffd700 20%,
+		#e6ac00 45%,
+		#a67c00 65%
+	);
+	text-shadow:
+		-1px -1px 0 #4b2e00,
+		 1px -1px 0 #4b2e00,
+		-1px  1px 0 #4b2e00,
+		 1px  1px 0 #4b2e00;
+}
+.sticker.ginsho {
+	color: #fff;
+	background: radial-gradient(circle at center,
+		#f0f0f0 5%,
+		#cccccc 20%,
+		#b0b0b0 45%,
+		#999999 65%
+	);
+	text-shadow:
+		-1px -1px 0 #333333,
+		 1px -1px 0 #333333,
+		-1px  1px 0 #333333,
+		 1px  1px 0 #333333;
+}
+.sticker.nyuusho {
+	color: #fff;
+	background: radial-gradient(circle at center,
+		#e0a060 5%,
+		#cd7f32 20%,
+		#b87333 45%,
+		#8b4513 65%);
+	text-shadow:
+		-1px -1px 0 #7f462c,
+		 1px -1px 0 #7f462c,
+		-1px  1px 0 #7f462c,
+		 1px  1px 0 #7f462c;
+}
 
 
 /* フッター */
