@@ -317,6 +317,10 @@ body {
   font-size: 0.95em;
   color: #555;
 }
+.organizer-card .affiliation a {
+  font-size: 0.95em;
+  color: #555;
+}
 
 .footer {
 	background-color: #17194c;
