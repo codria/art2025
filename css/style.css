@@ -322,6 +322,15 @@ body {
   color: #555;
 }
 
+.organizer-card.applicants {
+	width: 450px;
+	padding-top: 17px;
+}
+.organizer-card.applicants p {
+	padding: 0px;
+	margin: 7px;
+}
+
 .footer {
 	background-color: #17194c;
 	width: 100%;
